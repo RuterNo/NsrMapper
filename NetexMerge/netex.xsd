@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.netex.org.uk/netex" xmlns:gml="http://www.opengis.net/gml/3.2" targetNamespace="http://www.netex.org.uk/netex" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:import schemaLocation="gml_extract_all_objects_v_3_2_1.xsd"
+             namespace="http://www.opengis.net/gml/3.2" />
+  <xs:element name="PublicationDelivery" type="PublicationDeliveryType"/>
+  <xs:complexType name="PublicationDeliveryType">
+    <xs:sequence>
+      <xs:element name="PublicationTimestamp" type="xs:string" nillable="true"/>
+      <xs:element name="ParticipantRef" type="xs:string" nillable="true"/>
+      <xs:element name="dataObjects" type="dataObjectsType"/>
+    </xs:sequence>
+  
+ 
+    <xs:attribute name="version" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="dataObjectsType">
+    <xs:sequence>
+      <xs:element name="CompositeFrame" type="CompositeFrameType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CompositeFrameType">
+    <xs:sequence>
+      <xs:element name="validityConditions" type="validityConditionsType"/>
+      <xs:element name="codespaces" type="codespacesType"/>
+      <xs:element name="FrameDefaults" type="FrameDefaultsType"/>
+      <xs:element name="frames" type="framesType"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string"/>
+    <xs:attribute name="version" type="xs:string"/>
+    <xs:attribute name="modification" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="validityConditionsType">
+    <xs:sequence>
+      <xs:element name="ValidBetween" type="ValidBetweenType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ValidBetweenType">
+    <xs:sequence>
+      <xs:element name="FromDate" type="xs:string" nillable="true"/>
+      <xs:element name="ToDate" type="xs:string" nillable="true"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="codespacesType">
+    <xs:sequence>
+      <xs:element name="Codespace" type="CodespaceType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CodespaceType">
+    <xs:sequence>
+      <xs:element name="Xmlns" type="xs:string" nillable="true"/>
+      <xs:element name="XmlnsUrl" type="xs:string" nillable="true"/>
+      <xs:element name="Description" type="xs:string" nillable="true"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="FrameDefaultsType">
+    <xs:sequence>
+      <xs:element name="DefaultDataSourceRef" type="DefaultDataSourceRefType"/>
+      <xs:element name="DefaultLocale" type="DefaultLocaleType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DefaultDataSourceRefType">
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="DefaultLocaleType">
+    <xs:sequence>
+      <xs:element name="TimeZone" type="xs:string" nillable="true"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="framesType">
+    <xs:sequence>
+      <xs:element name="SiteFrame" type="SiteFrameType" minOccurs="0"/>
+      <xs:element name="ServiceFrame" type="ServiceFrameType"/>
+      <xs:element name="TimetableFrame" type="TimetableFrameType" minOccurs="0"/>
+      <xs:element name="VehicleScheduleFrame" type="VehicleScheduleFrameType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SiteFrameType">
+    <xs:sequence>
+      <xs:element name="stopPlaces" type="stopPlacesType"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string"/>
+    <xs:attribute name="version" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="stopPlacesType">
+    <xs:sequence>
+      <xs:element name="StopPlace" type="StopPlaceType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StopPlaceType">
+    <xs:sequence>
+      <xs:element name="Name" type="xs:string" nillable="true"/>
+      <xs:element name="StopPlaceType" type="xs:string" nillable="true"/>
+      <xs:element name="quays" type="quaysType"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string"/>
+    <xs:attribute name="version" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="quaysType">
+    <xs:sequence>
+      <xs:element name="Quay" type="QuayType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="QuayType">
+    <xs:sequence>
+      <xs:element name="Centroid" type="CentroidType"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string"/>
+    <xs:attribute name="version" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="CentroidType">
+    <xs:sequence>
+      <xs:element name="Location" type="LocationType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LocationType">
+    <xs:sequence>
+      <xs:element name="Longitude" type="xs:decimal" nillable="true"/>
+      <xs:element name="Latitude" type="xs:decimal" nillable="true"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ServiceFrameType">
+    <xs:sequence>
+      <xs:element name="Network" type="NetworkType"/>
+      <xs:element name="directions" type="directionsType"/>
+      <xs:element name="routePoints" type="routePointsType"/>
+      <xs:element name="routes" type="routesType"/>
+      <xs:element name="lines" type="linesType"/>
+      <xs:element name="destinationDisplays" type="destinationDisplaysType"/>
+      <xs:element name="scheduledStopPoints" type="scheduledStopPointsType"/>
+      <xs:element name="stopAssignments" type="stopAssignmentsType"/>
+
+      <xs:element name="journeyPatterns" type="journeyPatternsType"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string"/>
+    <xs:attribute name="version" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="NetworkType">
+    <xs:sequence>
+      <xs:element name="Name" type="xs:string" nillable="true"/>
+      <xs:element name="AuthorityRef" type="AuthorityRefType"/>
+      <xs:element name="groupsOfLines" type="groupsOfLinesType"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string"/>
+    <xs:attribute name="version" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="AuthorityRefType">
+    <xs:attribute name="ref" type="xs:string"/>
+    <xs:attribute name="version" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="groupsOfLinesType">
+    <xs:sequence>
+      <xs:element name="GroupOfLines" type="GroupOfLinesType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GroupOfLinesType">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string"/>
+      <xs:element name="members" type="membersType"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string"/>
+    <xs:attribute name="version" type="xs:string"/>
+    
+  </xs:complexType>
+  <xs:complexType name="membersType">
+    <xs:sequence>
+      <xs:element name="LineRef" type="LineRefType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LineRefType">
+    <xs:attribute name="ref" type="xs:string"/>
+    <xs:attribute name="version" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="directionsType">
+    <xs:sequence>
+      <xs:element name="Direction" type="DirectionType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DirectionType">
+    <xs:sequence>
+      <xs:element name="Name" type="xs:string" nillable="true"/>
+      <xs:element name="Description" type="xs:string" nillable="true"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string"/>
+    <xs:attribute name="version" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="routePointsType">
+    <xs:sequence>
+      <xs:element name="RoutePoint" type="RoutePointType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RoutePointType">
+    <xs:sequence>
+      <xs:element name="projections" type="projectionsType"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string"/>
+    <xs:attribute name="version" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="projectionsType">
+    <xs:sequence>
+      <xs:element name="PointProjection" type="PointProjectionType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PointProjectionType">
+    <xs:sequence>
+      <xs:element name="ProjectedPointRef" type="ProjectedPointRefType"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string"/>
+    <xs:attribute name="version" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="ProjectedPointRefType">
+    <xs:attribute name="ref" type="xs:string"/>
+    <xs:attribute name="version" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="routesType">
+    <xs:sequence>
+      <xs:element name="Route" type="RouteType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RouteType">
+    <xs:sequence>
+      <xs:element name="Name" type="xs:string" nillable="true"/>
+      <xs:element name="LineRef" type="LineRef1Type"/>
+      <xs:element name="DirectionRef" type="DirectionRefType"/>
+      <xs:element name="pointsInSequence" type="pointsInSequenceType"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string"/>
+    <xs:attribute name="version" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="LineRef1Type">
+    <xs:attribute name="version" type="xs:string"/>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="DirectionRefType">
+    <xs:attribute name="version" type="xs:string"/>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="pointsInSequenceType">
+    <xs:sequence>
+      <xs:element name="PointOnRoute" type="PointOnRouteType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PointOnRouteType">
+    <xs:sequence>
+      <xs:element name="RoutePointRef" type="RoutePointRefType"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string"/>
+    <xs:attribute name="version" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="RoutePointRefType">
+    <xs:attribute name="ref" type="xs:string"/>
+    <xs:attribute name="version" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="linesType">
+    <xs:sequence>
+      <xs:element name="Line" type="LineType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LineType">
+    <xs:sequence>
+      <xs:element name="Name" type="xs:string" nillable="true"/>
+      <xs:element name="TransportMode" type="xs:string" nillable="true"/>
+      <xs:element name="PublicCode" type="xs:string" nillable="true"/>
+      <xs:element name="OperatorRef" type="OperatorRefType"/>
+      <xs:element name="Monitored" type="xs:string" nillable="true"/>
+      <xs:element name="RepresentedByGroupRef" type="RepresentedByGroupRefType"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string"/>
+    <xs:attribute name="version" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="RepresentedByGroupRefType">
+    <xs:attribute name="ref" type="xs:string"/>
+    <xs:attribute name="version" type="xs:string"/>
+  </xs:complexType> 
+  <xs:complexType name="OperatorRefType">
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="destinationDisplaysType">
+    <xs:sequence>
+      <xs:element name="DestinationDisplay" type="DestinationDisplayType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DestinationDisplayType">
+    <xs:sequence>
+      <xs:element name="FrontText" type="xs:string" nillable="true"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string"/>
+    <xs:attribute name="version" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="scheduledStopPointsType">
+    <xs:sequence>
+      <xs:element name="ScheduledStopPoint" type="ScheduledStopPointType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ScheduledStopPointType">
+    <xs:sequence>
+      <xs:element name="Name" type="xs:string" nillable="true"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string"/>
+    <xs:attribute name="version" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="stopAssignmentsType">
+    <xs:sequence>
+      <xs:element name="PassengerStopAssignment" type="PassengerStopAssignmentType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PassengerStopAssignmentType">
+    <xs:sequence>
+      <xs:element name="ScheduledStopPointRef" type="ScheduledStopPointRefType"/>
+      <xs:element name="StopPlaceRef" type="StopPlaceRefType"/>
+      <xs:element name="QuayRef" type="QuayRefType"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string"/>
+    <xs:attribute name="version" type="xs:string"/>
+    <xs:attribute name="order" type="xs:int"/>
+  </xs:complexType>
+  <xs:complexType name="ScheduledStopPointRefType">
+    <xs:attribute name="ref" type="xs:string"/>
+    <xs:attribute name="version" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="StopPlaceRefType">
+    <xs:attribute name="ref" type="xs:string"/>
+    <xs:attribute name="version" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="QuayRefType">
+    <xs:attribute name="ref" type="xs:string"/>
+    <xs:attribute name="version" type="xs:string"/>
+  </xs:complexType>
+
+
+ 
+  <xs:complexType name="journeyPatternsType">
+    <xs:sequence>
+      <xs:element name="JourneyPattern" type="JourneyPatternType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="JourneyPatternType">
+    <xs:sequence>
+      <xs:element name="RouteRef" type="RouteRefType"/>
+      <xs:element name="pointsInSequence" type="pointsInSequence1Type"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string"/>
+    <xs:attribute name="version" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="RouteRefType">
+    <xs:attribute name="ref" type="xs:string"/>
+    <xs:attribute name="version" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="pointsInSequence1Type">
+    <xs:sequence>
+      <xs:element name="StopPointInJourneyPattern" type="StopPointInJourneyPatternType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StopPointInJourneyPatternType">
+    <xs:sequence>
+      <xs:element name="ScheduledStopPointRef" type="ScheduledStopPointRefType"/>
+      <xs:element name="ForAlighting" type="xs:string" minOccurs="0" />
+      <xs:element name="ForBoarding" type="xs:string" minOccurs="0" />
+      <xs:element name="DestinationDisplayRef" type="DestinationDisplayRefType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string"/>
+    <xs:attribute name="version" type="xs:string"/>
+    <xs:attribute name="order" type="xs:int"/>
+  </xs:complexType>
+  <xs:complexType name="DestinationDisplayRefType">
+    <xs:attribute name="ref" type="xs:string"/>
+    <xs:attribute name="version" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="TimetableFrameType">
+    <xs:sequence>
+      <xs:element name="vehicleJourneys" type="vehicleJourneysType"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string"/>
+    <xs:attribute name="version" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="vehicleJourneysType">
+    <xs:sequence>
+      <xs:element name="ServiceJourney" type="ServiceJourneyType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ServiceJourneyType">
+    <xs:sequence>
+      <xs:element name="dayTypes" type="dayTypesType"/>
+      <xs:element name="JourneyPatternRef" type="JourneyPatternRefType"/>
+      <xs:element name="passingTimes" type="passingTimesType"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string"/>
+    <xs:attribute name="version" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="dayTypesType">
+    <xs:sequence>
+      <xs:element name="DayTypeRef" type="DayTypeRefType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DayTypeRefType">
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="JourneyPatternRefType">
+    <xs:attribute name="ref" type="xs:string"/>
+    <xs:attribute name="version" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="passingTimesType">
+    <xs:sequence>
+      <xs:element name="TimetabledPassingTime" type="TimetabledPassingTimeType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TimetabledPassingTimeType">
+    <xs:sequence>
+      <xs:element name="StopPointInJourneyPatternRef" type="StopPointInJourneyPatternRefType"/>
+      <xs:element name="ArrivalTime" type="xs:string" minOccurs="0"/>
+      <xs:element name="ArrivalDayOffset" type="xs:string" minOccurs="0" />
+      <xs:element name="DepartureTime" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="DepartureDayOffset" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StopPointInJourneyPatternRefType">
+    <xs:attribute name="version" type="xs:string"/>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="VehicleScheduleFrameType">
+    <xs:sequence>
+      <xs:element name="blocks" type="blocksType"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string"/>
+    <xs:attribute name="version" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="blocksType">
+    <xs:sequence>
+      <xs:element name="Block" type="BlockType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BlockType">
+    <xs:sequence>
+      <xs:element name="Description" type="xs:string" nillable="true"/>
+      <xs:element name="VehicleTypeRef" type="VehicleTypeRefType"/>
+      <xs:element name="startPointRef" type="startPointRefType"/>
+      <xs:element name="endPointRef" type="endPointRefType"/>
+      <xs:element name="coursesOfJourneys" type="coursesOfJourneysType"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="VehicleTypeRefType">
+    <xs:attribute name="ref" type="xs:string"/>
+    <xs:attribute name="version" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="startPointRefType">
+    <xs:attribute name="ref" type="xs:string"/>
+    <xs:attribute name="version" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="endPointRefType">
+    <xs:attribute name="ref" type="xs:string"/>
+    <xs:attribute name="version" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="coursesOfJourneysType">
+    <xs:sequence>
+      <xs:element name="CourseOfJourneys" type="CourseOfJourneysType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CourseOfJourneysType">
+    <xs:sequence>
+      <xs:element name="StartTimeInBlock" type="xs:string" nillable="true"/>
+      <xs:element name="BlockRef" type="BlockRefType"/>
+      <xs:element name="journeys" type="journeysType"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string"/>
+    <xs:attribute name="version" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="BlockRefType">
+    <xs:attribute name="ref" type="xs:string"/>
+    <xs:attribute name="version" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="journeysType">
+    <xs:sequence>
+      <xs:element name="VehicleJourneyRef" type="VehicleJourneyRefType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="VehicleJourneyRefType">
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+</xs:schema>

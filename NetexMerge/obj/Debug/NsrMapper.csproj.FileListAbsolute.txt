@@ -1,0 +1,11 @@
+C:\Git\NetexMerge\NetexMerge\NetexMerge\bin\Debug\NetexMerge.exe.config
+C:\Git\NetexMerge\NetexMerge\NetexMerge\bin\Debug\NetexMerge.exe
+C:\Git\NetexMerge\NetexMerge\NetexMerge\bin\Debug\NetexMerge.pdb
+C:\Git\NetexMerge\NetexMerge\NetexMerge\bin\Debug\Ionic.Zip.Reduced.dll
+C:\Git\NetexMerge\NetexMerge\NetexMerge\bin\Debug\Polylines.dll
+C:\Git\NetexMerge\NetexMerge\NetexMerge\bin\Debug\SharpKml.Core.dll
+C:\Git\NetexMerge\NetexMerge\NetexMerge\bin\Debug\SharpKml.dll
+C:\Git\NetexMerge\NetexMerge\NetexMerge\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Git\NetexMerge\NetexMerge\NetexMerge\bin\Debug\SharpKml.Core.xml
+C:\Git\NetexMerge\NetexMerge\NetexMerge\obj\Debug\NetexMerge.exe
+C:\Git\NetexMerge\NetexMerge\NetexMerge\obj\Debug\NetexMerge.pdb

@@ -1,0 +1,5 @@
+C:\Git\NetexMerge\NetexMerge\NetexModel\bin\Debug\NetexModel.dll
+C:\Git\NetexMerge\NetexMerge\NetexModel\bin\Debug\NetexModel.pdb
+C:\Git\NetexMerge\NetexMerge\NetexModel\obj\Debug\NetexModel.csprojResolveAssemblyReference.cache
+C:\Git\NetexMerge\NetexMerge\NetexModel\obj\Debug\NetexModel.dll
+C:\Git\NetexMerge\NetexMerge\NetexModel\obj\Debug\NetexModel.pdb
